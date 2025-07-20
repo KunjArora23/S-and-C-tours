@@ -11,7 +11,6 @@ import About from './pages/About.jsx';
 import Contact from './pages/Contact.jsx';
 import AdminLogin from './pages/AdminLogin.jsx';
 import FloatingCTA from './components/FloatingCTA.jsx';
-
 import AnimatedPageWrapper from './components/AnimatedPageWrapper.jsx';
 import MultiContactButton from './components/MultiContact.jsx';
 import ChatbotWidget from './components/ChatbotWidget.jsx';
@@ -96,7 +95,7 @@ function AppContent() {
                       <Route path="/contact" element={<Contact />} />
                       <Route path="/citytour/:id" element={<CityTourDetailPage />} />
                       {/* <Route path="/login" element={<Login />} />
-                    <Route path="/signup" element={<Signup />} /> */}
+                  <Route path="/signup" element={<Signup />} /> */}
                       <Route path="/tour/:id" element={<TourDetailUser />} />
                       {/* admin routes */}
                       <Route path="/admin" element={<AdminLogin />} />
@@ -115,19 +114,24 @@ function AppContent() {
                   </AnimatedPageWrapper>
                 </main>
                 <Footer />
+           
+                <MultiContactButton />
+                <ChatbotWidget />
+                <DownloadPopup />
+                <ToastContainer
+                  position="top-right"
+                  autoClose={5000}
+                  hideProgressBar={false}
+                  newestOnTop={false}
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                  theme="light"
+                />
               </div>
             </AuthProvider>
-            <DownloadPopup />
-            {/* Place both buttons in a flex row for mobile, absolute bottom left/right */}
-            <div className="fixed bottom-6 left-6 right-6 z-50 flex flex-row justify-between items-end pointer-events-none sm:pointer-events-auto sm:static sm:flex-none">
-              <div className="pointer-events-auto">
-                <MultiContactButton />
-              </div>
-              <div className="pointer-events-auto">
-                <ChatbotWidget />
-              </div>
-            </div>
-            <ToastContainer position="bottom-right" autoClose={2000} pauseOnHover />
           </ThemeProvider>
         )}
       </>

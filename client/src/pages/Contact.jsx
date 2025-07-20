@@ -52,7 +52,7 @@ const Contact = () => {
     specialRequests: ''
   });
 
- 
+
 
 
 
@@ -677,39 +677,55 @@ const Contact = () => {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                        Phone Number
+                        Country Code
+                      </label>
+                      <select
+                        name="countryCode"
+                        value={tailorMadeData.countryCode}
+                        onChange={handleTailorMadeChange}
+                        className="w-full px-4 py-3 rounded-lg border-2 border-rolex-gold bg-rolex-champagne text-rolex-green focus:ring-2 focus:ring-rolex-gold focus:border-rolex-gold transition-colors duration-200"
+                      >
+                        {countryCodes.map((code, index) => (
+                          <option key={index} value={code}>{code}</option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className="md:col-span-2">
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        Phone Number *
                       </label>
                       <input
                         type="tel"
                         name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
+                        value={tailorMadeData.phone}
+                        onChange={handleTailorMadeChange}
+                        required
                         className="w-full px-4 py-3 rounded-lg border-2 border-rolex-gold bg-rolex-champagne text-rolex-green focus:ring-2 focus:ring-rolex-gold focus:border-rolex-gold transition-colors duration-200 placeholder:text-rolex-mutedChampagne"
                         placeholder="Enter your phone number"
                       />
                     </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                        Inquiry Type
-                      </label>
-                      <select
-                        name="inquiryType"
-                        value={formData.inquiryType}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-lg border-2 border-rolex-gold bg-rolex-champagne text-rolex-green focus:ring-2 focus:ring-rolex-gold focus:border-rolex-gold transition-colors duration-200"
-                      >
-                        <option value="general">General Inquiry</option>
-                        <option value="booking">Tour Booking</option>
-                        <option value="custom">Custom Package</option>
-                        <option value="support">Customer Support</option>
-                        <option value="partnership">Partnership</option>
-                      </select>
-                    </div>
                   </div>
 
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      Country *
+                    </label>
+                    <select
+                      name="country"
+                      value={tailorMadeData.country}
+                      onChange={handleTailorMadeChange}
+                      required
+                      className="w-full px-4 py-3 rounded-lg border-2 border-rolex-gold bg-rolex-champagne text-rolex-green focus:ring-2 focus:ring-rolex-gold focus:border-rolex-gold transition-colors duration-200"
+                    >
+                      <option value="">Select your country</option>
+                      {countries.map((country, index) => (
+                        <option key={index} value={country}>{country}</option>
+                      ))}
+                    </select>
+                  </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       Subject *
@@ -725,49 +741,7 @@ const Contact = () => {
                     />
                   </div>
 
-                  {!showTailorMadeForm && (
-                    <>
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                          Preferred Meeting Date
-                        </label>
-                        <input
-                          type="date"
-                          name="meetingDate"
-                          value={meetingDate}
-                          onChange={e => setMeetingDate(e.target.value)}
-                          min={dayjs().add(1, 'day').format('YYYY-MM-DD')}
-                          required
-                          className="w-full px-4 py-3 rounded-lg border-2 border-rolex-gold bg-rolex-champagne text-rolex-green focus:ring-2 focus:ring-rolex-gold focus:border-rolex-gold transition-colors duration-200"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                          Preferred Time Slot (IST)
-                        </label>
-                        <select
-                          name="meetingTime"
-                          value={meetingTime}
-                          onChange={e => setMeetingTime(e.target.value)}
-                          required
-                          disabled={!meetingDate || slotsLoading || availableSlots.length === 0}
-                          className="w-full px-4 py-3 rounded-lg border-2 border-rolex-gold bg-rolex-champagne text-rolex-green focus:ring-2 focus:ring-rolex-gold focus:border-rolex-gold transition-colors duration-200"
-                        >
-                          <option value="">{slotsLoading ? 'Loading slots...' : 'Select a time slot'}</option>
-                          {availableSlots.map(slot => (
-                            <option key={slot.ist} value={slot.ist}>{slot.userLabel} (IST: {slot.ist})</option>
-                          ))}
-                        </select>
-                        {slotsLoading && <div className="text-primary-600 text-sm mt-2">Loading available slots...</div>}
-                        {!slotsLoading && meetingDate && availableSlots.length === 0 && (
-                          <div className="text-red-500 text-sm mt-2 font-semibold">No slots available for this date.</div>
-                        )}
-                      </div>
-                      {slotError && (
-                        <div className="text-red-500 text-sm mt-2 font-semibold">{slotError}</div>
-                      )}
-                    </>
-                  )}
+
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">

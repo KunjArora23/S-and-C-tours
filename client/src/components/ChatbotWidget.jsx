@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const CHATBOT_LOGO = '../../public/chatbot-icon2.png'; // Replace with your chatbot's logo if needed
+const CHATBOT_LOGO = '/chatbot-icon2.png'; // Replace with your chatbot's logo if needed
 
 const ChatbotWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
