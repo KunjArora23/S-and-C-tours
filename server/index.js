@@ -36,7 +36,7 @@ connectDB()
 // Middleware
 app.use(cookieParser());
 app.use(cors({
-  origin: ["http://localhost:5173", "https://www.sandctours.com"],
+  origin: ["http://localhost:5173", "https://sandctour.duckdns.org"],
   credentials: true,
   samesite: 'none',
 }));
