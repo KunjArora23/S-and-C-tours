@@ -29,7 +29,7 @@ const Home = () => {
         setFeaturedTours(tours);
       } catch (error) {
         console.warn('Using fallback featured tours');
-        setFeaturedTours(mockPackages.filter(pkg => pkg.featured).slice(0, 3));
+        // setFeaturedTours(mockPackages.filter(pkg => pkg.featured).slice(0, 3));
       } finally {
         setLoading(false);
       }
