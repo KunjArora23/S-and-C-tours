@@ -5,6 +5,7 @@ import { deleteMediaFromCloudinary, uploadMedia } from "../utils/cloudinary.js";
 
 
 export const createCity = async (req, res) => {
+  console.log("in createCity controller");
   try {
 
     const { title, description } = req.body;

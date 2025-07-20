@@ -7,6 +7,7 @@ const JWT_SECRET = "mysecretkey";
 export const adminAuth = async (req, res, next) => {
   try {
     const token = req.cookies.adminToken;
+    console.log("token", token);
     if (!token) {
       return res.status(401).json({
         message: "Admin not authenticated",
@@ -21,9 +22,10 @@ export const adminAuth = async (req, res, next) => {
       });
     }
     req.id = decode._id;
+    console.log("decode", decode);
     next();
   } catch (error) {
-    console.log(error);
+    console.log("error in adminAuth middleware", error);
     return res.status(401).json({
       message: "Admin not authenticated",
       success: false,
