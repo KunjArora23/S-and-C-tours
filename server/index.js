@@ -27,7 +27,7 @@ dotenv.config();
 console.log("in app,js")
 
 const app = express();
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 8080;
 
 // Connect to database
 connectDB()
