@@ -10,7 +10,7 @@ const TourDetail = () => {
   useEffect(() => {
     const fetchTour = async () => {
       try {
-        const res = await axios.get(`http://localhost:8000/api/v1/tour/${id}`);
+        const res = await axios.get(`http://sandctour.duckdns.org/api/v1/tour/${id}`);
         setTour(res.data.tour || null);
       } catch (err) {
         console.error("Error fetching tour:", err);

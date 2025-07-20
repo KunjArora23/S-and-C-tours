@@ -48,7 +48,7 @@ const AddTour = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/v1/admin/createtour",
+        "http://sandctour.duckdns.org/api/v1/admin/createtour",
         formData,
         {
           withCredentials: true,

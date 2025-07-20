@@ -43,7 +43,7 @@ const FeaturedTours = () => {
   const fetchTours = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:8000/api/v1/tour/admin/all');
+      const response = await axios.get('http://sandctour.duckdns.org/api/v1/tour/admin/all');
       setTours(response.data.tours || []);
     } catch (error) {
       console.error('Error fetching tours:', error);
@@ -56,7 +56,7 @@ const FeaturedTours = () => {
   const toggleFeatured = async (tourId) => {
     try {
       setUpdating(tourId);
-      const response = await axios.patch(`http://localhost:8000/api/v1/tour/admin/${tourId}/toggle-featured`);
+      const response = await axios.patch(`http://sandctour.duckdns.org/api/v1/tour/admin/${tourId}/toggle-featured`);
       
       // Update the tour in the local state
       setTours(prevTours => 
@@ -110,7 +110,7 @@ const FeaturedTours = () => {
         order: index
       }));
 
-      await axios.post('http://localhost:8000/api/v1/tour/admin/reorder', {
+      await axios.post('http://sandctour.duckdns.org/api/v1/tour/admin/reorder', {
         tourOrders
       });
 

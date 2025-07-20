@@ -13,7 +13,7 @@ const TourDetailUser = () => {
   useEffect(() => {
     const fetchTour = async () => {
       try {
-        const { data } = await axios.get(`http://localhost:8000/api/v1/tour/${id}`, {
+        const { data } = await axios.get(`http://sandctour.duckdns.org/api/v1/tour/${id}`, {
           withCredentials: true,
         });
         setTour(data.tour);

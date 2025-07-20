@@ -24,7 +24,7 @@ const Home = () => {
     const loadFeaturedTours = async () => {
       try {
         // Use the new featured tours endpoint that respects order
-        const response = await axios.get('http://localhost:8000/api/v1/tour/featured');
+        const response = await axios.get('http://sandctour.duckdns.org/api/v1/tour/featured');
         const tours = response.data.tours || [];
         setFeaturedTours(tours);
       } catch (error) {

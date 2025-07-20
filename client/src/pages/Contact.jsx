@@ -190,7 +190,7 @@ const Contact = () => {
       setSlotsLoading(true);
       setAvailableSlots([]);
       axios
-        .get(`http://localhost:8000/api/v1/contact/available-slots?date=${meetingDate}`)
+        .get(`http://sandctour.duckdns.org/api/v1/contact/available-slots?date=${meetingDate}`)
         .then(res => {
           // Convert IST slots to user timezone for display
           const slots = (res.data.slots || []).map(slot => {
@@ -249,7 +249,7 @@ const Contact = () => {
       const dataToSend = showTailorMadeForm
         ? { ...tailorMadeData, userTimeZone }
         : { ...formData, meetingDate, meetingTime, userTimeZone };
-      const res = await axios.post('http://localhost:8000/api/v1/contact', dataToSend);
+      const res = await axios.post('http://sandctour.duckdns.org/api/v1/contact', dataToSend);
       if (res.data && res.data.meetLink) {
         // Optionally show Meet link to user
       }

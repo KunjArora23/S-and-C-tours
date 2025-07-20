@@ -23,7 +23,7 @@ const EditTour = () => {
   useEffect(() => {
     const fetchTour = async () => {
       try {
-        const res = await axios.get(`http://localhost:8000/api/v1/tour/${id}`);
+        const res = await axios.get(`http://sandctour.duckdns.org/api/v1/tour/${id}`);
         setTour({
           title: res.data.tour.title,
           duration: res.data.tour.duration,
@@ -69,7 +69,7 @@ const EditTour = () => {
     if (image) form.append("image", image);
 
     try {
-      await axios.put(`http://localhost:8000/api/v1/admin/updatetour/${id}`, form, {
+      await axios.put(`http://sandctour.duckdns.org/api/v1/admin/updatetour/${id}`, form, {
         headers: { "Content-Type": "multipart/form-data" },
         withCredentials: true,
       });
@@ -93,12 +93,12 @@ const EditTour = () => {
     setIsPinModalOpen(false);
     try {
       if (pendingAction === 'update') {
-        await axios.put(`http://localhost:8000/api/v1/admin/updatetour/${id}`, { ...form, pin }, {
+        await axios.put(`http://sandctour.duckdns.org/api/v1/admin/updatetour/${id}`, { ...form, pin }, {
           headers: { "Content-Type": "multipart/form-data" },
           withCredentials: true,
         });
       } else if (pendingAction === 'delete') {
-        await axios.delete(`http://localhost:8000/api/v1/admin/updatetour/${id}`, { data: { pin } });
+        await axios.delete(`http://sandctour.duckdns.org/api/v1/admin/updatetour/${id}`, { data: { pin } });
       }
       // handle success (refresh, close modal, etc.)
       alert("Tour updated successfully");
