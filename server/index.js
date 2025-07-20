@@ -36,12 +36,7 @@ connectDB()
 // Middleware
 app.use(cookieParser());
 app.use(cors({
-  origin: ["https://www.sandctours.com"],
-  credentials: true,
-}));
-// Ensure preflight requests are handled for all routes
-app.options('*', cors({
-  origin: ["https://www.sandctours.com"],
+  origin: ["https://www.sandctours.com", "http://localhost:3000"],
   credentials: true,
 }));
 app.use(express.json({ limit: '10mb' }));
