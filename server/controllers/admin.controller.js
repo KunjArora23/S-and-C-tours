@@ -35,9 +35,9 @@ export const adminSignup = async (req, res) => {
         // 5. Set cookie
         res.cookie("adminToken", token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            sameSite: "strict",
-            maxAge: 86400000, // 1 day
+            secure: true,           // Required for HTTPS
+            sameSite: "None",       // Required for cross-origin cookies
+            maxAge: 86400000        // 1 day
         });
 
         return res.status(201).json({
@@ -76,7 +76,8 @@ export const adminLogin = async (req, res) => {
         // ✅ Production-ready secure cookie
         res.cookie("adminToken", token, {
             httpOnly: true,
-            sameSite: "strict",
+            secure: true,          // needed for HTTPS
+            sameSite: "None",      // allow cross-origin cookies
             maxAge: 24 * 60 * 60 * 1000
         });
 
