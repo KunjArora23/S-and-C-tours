@@ -38,7 +38,6 @@ app.use(cookieParser());
 app.use(cors({
   origin: ["https://www.sandctours.com"],
   credentials: true,
-  samesite: 'none',
 }));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
