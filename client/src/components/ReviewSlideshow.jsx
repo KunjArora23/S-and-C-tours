@@ -62,7 +62,7 @@ const ReviewSlideshow = () => {
     try {
       setLoading(true);
       setError(null);
-      const response = await axios.get('http://sandctour.duckdns.org/api/v1/review/active');
+      const response = await axios.get('https://sandctour.duckdns.org/api/v1/review/active');
       setReviews(response.data.reviews || []);
     } catch (error) {
       setError('Failed to load reviews from the server.');

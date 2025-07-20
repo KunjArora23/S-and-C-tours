@@ -18,7 +18,7 @@ const EditCity = () => {
     useEffect(() => {
         const fetchCity = async () => {
             try {
-                const res = await axios.get(`http://sandctour.duckdns.org/api/v1/city/get/${id}`);
+                const res = await axios.get(`https://sandctour.duckdns.org/api/v1/city/get/${id}`);
                 setCity({
                     title: res.data.city.title,
                     description: res.data.city.description,
@@ -39,7 +39,7 @@ const EditCity = () => {
         if (image) formData.append("image", image);
 
         try {
-            await axios.put(`http://sandctour.duckdns.org/api/v1/admin/updatecity/${id}`, formData, {
+            await axios.put(`https://sandctour.duckdns.org/api/v1/admin/updatecity/${id}`, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
@@ -65,9 +65,9 @@ const EditCity = () => {
         setIsPinModalOpen(false);
         try {
             if (pendingAction === 'update') {
-                await axios.put(`http://sandctour.duckdns.org/api/v1/admin/updatecity/${id}`, { ...formData, pin });
+                await axios.put(`https://sandctour.duckdns.org/api/v1/admin/updatecity/${id}`, { ...formData, pin });
             } else if (pendingAction === 'delete') {
-                await axios.delete(`http://sandctour.duckdns.org/api/v1/admin/updatecity/${id}`, { data: { pin } });
+                await axios.delete(`https://sandctour.duckdns.org/api/v1/admin/updatecity/${id}`, { data: { pin } });
             }
             // handle success (refresh, close modal, etc.)
         } catch (err) {

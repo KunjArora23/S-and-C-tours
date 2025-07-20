@@ -40,7 +40,7 @@ const Hero = () => {
   const fetchFeaturedTours = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://sandctour.duckdns.org/api/v1/tour/featured');
+      const response = await axios.get('https://sandctour.duckdns.org/api/v1/tour/featured');
       if (response.data.success && response.data.tours.length > 0) {
         setFeaturedTours(response.data.tours);
       }
