@@ -35,25 +35,33 @@ const EditTour = () => {
 
   const handleChange = (e) => {
     setTour({ ...tour, [e.target.name]: e.target.value });
-    console.log(tour)
+    
   };
 
   const handleDestinationChange = (index, value) => {
-    const updated = [...tour.destinations];
-    updated[index] = value;
-    setTour({ ...tour, destinations: updated });
+    setTour(prev => {
+      const updated = [...prev.destinations];
+      updated[index] = value;
+      return { ...prev, destinations: updated };
+    });
   };
 
   const handleItineraryChange = (index, field, value) => {
-    const updated = [...tour.itinerary];
-    updated[index][field] = value;
-    setTour({ ...tour, itinerary: updated });
+    setTour(prev => {
+      const updated = [...prev.itinerary];
+      updated[index] = { ...updated[index], [field]: value };
+      return { ...prev, itinerary: updated };
+    });
   };
 
   const addItineraryDay = () => {
-    setTour({ ...tour, itinerary: [...tour.itinerary, newDay] });
+    setTour(prev => ({ ...prev, itinerary: [...prev.itinerary, newDay] }));
     setNewDay({ day: "", title: "", description: "" });
   };
+
+  useEffect(() => {
+    console.log('Tour state:', tour);
+  }, [tour]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
