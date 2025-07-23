@@ -10,9 +10,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-rolex-gold rounded-lg flex items-center justify-center">
-                {/* <MapPin className="w-6 h-6 text-rolex-green" /> */}
-              </div>
+             
               <div>
                 <h3 className="text-xl font-bold text-rolex-gold">S & C Tours</h3>
                 <p className="text-sm text-rolex-champagne">Discover Amazing India</p>

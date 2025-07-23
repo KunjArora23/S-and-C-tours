@@ -23,9 +23,9 @@ const Header = () => {
   ];
 
   return (
-    <header className={`sticky top-0 z-50 shadow-lg border-b border-rolex-gold/30 transition-all duration-300 ${scrolled ? 'backdrop-blur-xl bg-gradient-to-b from-[#FFF8E1] via-white to-white' : 'bg-rolex-darkGreen'}`}>
+    <header className={`sticky top-0 z-50 shadow-lg border-b border-rolex-gold/30 transition-all duration-300 ${scrolled ? 'backdrop-blur-xl "bg-rolex-darkGreen' : 'bg-rolex-darkGreen'}`}>
       {/* Top Bar */}
-      <div className="hidden md:block bg-rolex-darkGreen text-rolex-champagne py-2 animate-fade-in">
+      <div className="hidden md:block bg-[#FFF8E1] text-rolex-champagne py-2 animate-fade-in">
         <div className="container mx-auto px-4 flex justify-between items-center text-sm">
           <div className="flex items-center space-x-6">
             <div className="flex items-center space-x-2">
@@ -36,7 +36,7 @@ const Header = () => {
           </div>
           <div className="flex items-center space-x-2">
             {/* <MapPin className="w-4 h-4 text-rolex-gold" /> */}
-            <img src="./logo.png" alt="" srcset="" className='w-10 h-10' />
+            <img src="/logo.png" alt="S & C Tours Logo" className='w-10 h-10' />
             <span className="tracking-wide font-semibold text-rolex-gold">S & C Tours</span>
           </div>
         </div>
@@ -48,7 +48,7 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 group">
             <div className="w-12 h-12 bg-rolex-gold rounded-xl flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
-              {/* <MapPin className="w-7 h-7 text-rolex-green drop-shadow-lg" /> */}
+              <img src="/logo.png" alt="" srcset="" />
             </div>
             <div>
               <h1 className={`text-2xl md:text-3xl font-cinzel font-bold tracking-tight drop-shadow-xl group-hover:text-rolex-green transition-colors ${scrolled ? 'text-white drop-shadow-lg' : 'text-rolex-gold'}`}>S & C Tours</h1>
@@ -62,10 +62,9 @@ const Header = () => {
                 key={item.name}
                 to={item.path}
                 className={({ isActive }) =>
-                  `text-base font-semibold font-sans px-2 py-1 rounded-lg transition-all duration-200 hover:text-rolex-gold hover:bg-rolex-gold/10 focus:outline-none focus:ring-2 focus:ring-rolex-gold ${
-                    isActive
-                      ? 'text-rolex-gold bg-rolex-gold/10 shadow'
-                      : 'text-rolex-champagne'
+                  `text-base font-semibold font-sans px-2 py-1 rounded-lg transition-all duration-200 hover:text-rolex-gold hover:bg-rolex-gold/10 focus:outline-none focus:ring-2 focus:ring-rolex-gold ${isActive
+                    ? 'text-rolex-gold bg-rolex-gold/10 shadow'
+                    : 'text-rolex-champagne'
                   }`
                 }
               >
@@ -96,10 +95,9 @@ const Header = () => {
                   to={item.path}
                   onClick={() => setIsMenuOpen(false)}
                   className={({ isActive }) =>
-                    `text-base font-semibold font-sans py-2 px-3 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-rolex-gold ${
-                      isActive
-                        ? 'text-rolex-gold bg-rolex-gold/10 shadow'
-                        : 'text-rolex-champagne hover:bg-rolex-gold/10'
+                    `text-base font-semibold font-sans py-2 px-3 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-rolex-gold ${isActive
+                      ? 'text-rolex-gold bg-rolex-gold/10 shadow'
+                      : 'text-rolex-champagne hover:bg-rolex-gold/10'
                     }`
                   }
                 >
