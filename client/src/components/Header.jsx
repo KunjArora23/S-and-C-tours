@@ -25,7 +25,7 @@ const Header = () => {
   return (
     <header className={`sticky top-0 z-50 shadow-lg border-b border-rolex-gold/30 transition-all duration-300 ${scrolled ? 'backdrop-blur-xl "bg-rolex-darkGreen' : 'bg-rolex-darkGreen'}`}>
       {/* Top Bar */}
-      <div className="hidden md:block bg-[#FFF8E1] text-rolex-champagne py-2 animate-fade-in">
+      <div className="hidden md:block bg-[#FFF8E1] text-rolex-gold py-2 animate-fade-in">
         <div className="container mx-auto px-4 flex justify-between items-center text-sm">
           <div className="flex items-center space-x-6">
             <div className="flex items-center space-x-2">
