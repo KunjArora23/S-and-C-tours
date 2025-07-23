@@ -18,7 +18,7 @@ const EditTour = () => {
   useEffect(() => {
     const fetchTour = async () => {
       try {
-        const res = await axios.get(`https://sandctour.duckdns.org/api/v1/tour/updatetour/${id}`);
+        const res = await axios.get(`https://sandctour.duckdns.org/api/v1/tour/${id}`);
         setTour({
           title: res.data.tour.title,
           duration: res.data.tour.duration,
@@ -196,12 +196,7 @@ const EditTour = () => {
           Update Tour
         </button>
       </form>
-      <button
-        onClick={handleDelete}
-        className="mt-4 bg-red-600 text-white px-6 py-2 rounded hover:bg-red-700"
-      >
-        Delete Tour
-      </button>
+     
     </div>
   );
 };
