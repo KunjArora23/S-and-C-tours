@@ -16,7 +16,7 @@ const Cities = () => {
     const fetchTours = async () => {
       try {
         setLoading(true);
-        const { data } = await axios.get('https://sandctour.duckdns.org/api/v1/city/getAll'); // Update API endpoint if needed
+        const { data } = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/city/getAll`); // Update API endpoint if needed
         setTours(data.data);
         setLoading(false);
       } catch (error) {

@@ -55,7 +55,7 @@ const ReviewManagement = () => {
   const fetchReviews = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('https://sandctour.duckdns.org/api/v1/review/');
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/review/`);
       // Sort reviews by order field
       const sortedReviews = (response.data.reviews || []).sort((a, b) => (a.order || 0) - (b.order || 0));
       setReviews(sortedReviews);
@@ -106,12 +106,12 @@ const ReviewManagement = () => {
       formDataToSend.append('image', formData.image);
 
       if (editingReview) {
-        await axios.put(`https://sandctour.duckdns.org/api/v1/review/${editingReview._id}`, formDataToSend, {
+        await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/v1/review/${editingReview._id}`, formDataToSend, {
           withCredentials: true
         });
         toast.success('Review updated successfully');
       } else {
-        await axios.post('https://sandctour.duckdns.org/api/v1/review/create', formDataToSend, {
+        await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/review/create`, formDataToSend, {
           withCredentials: true
         });
         toast.success('Review created successfully');
@@ -150,12 +150,12 @@ const ReviewManagement = () => {
     setIsPinModalOpen(false);
     try {
       if (pendingAction === 'update') {
-        await axios.put(`https://sandctour.duckdns.org/api/v1/review/${editingReview._id}`, { ...formData, pin }, {
+        await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/v1/review/${editingReview._id}`, { ...formData, pin }, {
           withCredentials: true
         });
         toast.success('Review updated successfully');
       } else if (pendingAction === 'delete') {
-        await axios.delete(`https://sandctour.duckdns.org/api/v1/review/${editingReview._id}`, {
+        await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/v1/review/${editingReview._id}`, {
           data: { pin },
           withCredentials: true
         });
@@ -174,7 +174,7 @@ const ReviewManagement = () => {
 
   const handleToggleStatus = async (reviewId) => {
     try {
-      await axios.patch(`https://sandctour.duckdns.org/api/v1/review/${reviewId}/toggle`, {}, {
+      await axios.patch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/review/${reviewId}/toggle`, {}, {
         withCredentials: true
       });
       toast.success('Review status updated');
@@ -219,7 +219,7 @@ const ReviewManagement = () => {
         order: index
       }));
 
-      await axios.post('https://sandctour.duckdns.org/api/v1/review/admin/reorder', {
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/review/admin/reorder`, {
         reviewOrders
       });
 

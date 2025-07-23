@@ -39,7 +39,7 @@ const CityList = () => {
   const fetchCities = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("https://sandctour.duckdns.org/api/v1/city/getAll");
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/city/getAll`);
       setCities(res.data?.data || res.data?.cities || []);
       setError(null);
     } catch (error) {
@@ -59,7 +59,7 @@ const CityList = () => {
     if (!window.confirm("Are you sure you want to delete this city and all its tours?")) return;
 
     try {
-      await axios.delete(`https://sandctour.duckdns.org/api/v1/admin/delete-city/${cityId}`, { withCredentials: true });
+      await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/v1/admin/delete-city/${cityId}`, { withCredentials: true });
       toast.success("City deleted successfully");
       fetchCities(); // Refresh city list
     } catch (error) {
@@ -102,7 +102,7 @@ const CityList = () => {
         order: index
       }));
 
-      await axios.post('https://sandctour.duckdns.org/api/v1/city/admin/reorder', {
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/city/admin/reorder`, {
         cityOrders
       });
 
