@@ -20,11 +20,12 @@ const EditTour = () => {
       try {
         const res = await axios.get(`https://sandctour.duckdns.org/api/v1/tour/${id}`);
         setTour({
-          title: res.data.tour.title,
-          duration: res.data.tour.duration,
-          destinations: res.data.tour.destinations,
-          itinerary: res.data.tour.itinerary,
+          title: res.data.tour.title || "",
+          duration: res.data.tour.duration || "",
+          destinations: res.data.tour.destinations || [],
+          itinerary: res.data.tour.itinerary || [],
         });
+        console.log(res)
       } catch (error) {
         console.error("Error fetching tour:", error);
       }
