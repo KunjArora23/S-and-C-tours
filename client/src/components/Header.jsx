@@ -23,7 +23,7 @@ const Header = () => {
   ];
 
   return (
-    <header className={`sticky top-0 z-50 shadow-lg border-b border-rolex-gold/30 transition-all duration-300 ${scrolled ? 'backdrop-blur-xl bg-rolex-darkGreen/90' : 'bg-rolex-darkGreen'}`}>
+    <header className={`sticky top-0 z-50 shadow-lg border-b border-rolex-gold/30 transition-all duration-300 ${scrolled ? 'backdrop-blur-xl bg-gradient-to-b from-[#FFF8E1] via-white to-white' : 'bg-rolex-darkGreen'}`}>
       {/* Top Bar */}
       <div className="hidden md:block bg-rolex-darkGreen text-rolex-champagne py-2 animate-fade-in">
         <div className="container mx-auto px-4 flex justify-between items-center text-sm">
@@ -35,7 +35,8 @@ const Header = () => {
             </div>
           </div>
           <div className="flex items-center space-x-2">
-            <MapPin className="w-4 h-4 text-rolex-gold" />
+            {/* <MapPin className="w-4 h-4 text-rolex-gold" /> */}
+            <img src="./logo.png" alt="" srcset="" className='w-10 h-10' />
             <span className="tracking-wide font-semibold text-rolex-gold">S & C Tours</span>
           </div>
         </div>
@@ -47,7 +48,7 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 group">
             <div className="w-12 h-12 bg-rolex-gold rounded-xl flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
-              <MapPin className="w-7 h-7 text-rolex-green drop-shadow-lg" />
+              {/* <MapPin className="w-7 h-7 text-rolex-green drop-shadow-lg" /> */}
             </div>
             <div>
               <h1 className={`text-2xl md:text-3xl font-cinzel font-bold tracking-tight drop-shadow-xl group-hover:text-rolex-green transition-colors ${scrolled ? 'text-white drop-shadow-lg' : 'text-rolex-gold'}`}>S & C Tours</h1>

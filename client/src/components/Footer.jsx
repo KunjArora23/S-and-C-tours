@@ -11,7 +11,7 @@ const Footer = () => {
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 bg-rolex-gold rounded-lg flex items-center justify-center">
-                <MapPin className="w-6 h-6 text-rolex-green" />
+                {/* <MapPin className="w-6 h-6 text-rolex-green" /> */}
               </div>
               <div>
                 <h3 className="text-xl font-bold text-rolex-gold">S & C Tours</h3>
@@ -19,7 +19,7 @@ const Footer = () => {
               </div>
             </div>
             <p className="text-rolex-champagne text-sm leading-relaxed">
-              Experience the magic of India with our carefully curated tour packages. 
+              Experience the magic of India with our carefully curated tour packages.
               From the majestic Himalayas to serene backwaters, we bring you the best of Incredible India.
             </p>
           </div>
@@ -28,41 +28,41 @@ const Footer = () => {
           <div className="space-y-4">
             <h4 className="text-lg font-semibold text-rolex-gold">Quick Links</h4>
             <nav className="flex flex-col space-y-2">
-              <NavLink 
-                to="/" 
-                className={({ isActive }) => 
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
                   `text-rolex-champagne hover:text-rolex-gold transition-colors duration-200 ${isActive ? 'text-rolex-gold' : ''}`
                 }
               >
                 Home
               </NavLink>
-              <NavLink 
-                to="/tours" 
-                className={({ isActive }) => 
+              <NavLink
+                to="/tours"
+                className={({ isActive }) =>
                   `text-rolex-champagne hover:text-rolex-gold transition-colors duration-200 ${isActive ? 'text-rolex-gold' : ''}`
                 }
               >
                 Tours
               </NavLink>
-              <NavLink 
-                to="/about" 
-                className={({ isActive }) => 
+              <NavLink
+                to="/about"
+                className={({ isActive }) =>
                   `text-rolex-champagne hover:text-rolex-gold transition-colors duration-200 ${isActive ? 'text-rolex-gold' : ''}`
                 }
               >
                 About Us
               </NavLink>
-              <NavLink 
-                to="/contact" 
-                className={({ isActive }) => 
+              <NavLink
+                to="/contact"
+                className={({ isActive }) =>
                   `text-rolex-champagne hover:text-rolex-gold transition-colors duration-200 ${isActive ? 'text-rolex-gold' : ''}`
                 }
               >
                 Contact
               </NavLink>
-               <Link to="/admin" className="text-rolex-champagne hover:text-rolex-gold text-sm transition-colors duration-200 flex items-center">
-              <Lock className="w-3 h-3 mr-1" /> Admin
-            </Link>
+              <Link to="/admin" className="text-rolex-champagne hover:text-rolex-gold text-sm transition-colors duration-200 flex items-center">
+                <Lock className="w-3 h-3 mr-1" /> Admin
+              </Link>
             </nav>
           </div>
 
@@ -79,7 +79,7 @@ const Footer = () => {
               <Link to="/citytour/686ac613e304211edeb3dd69" className="text-rolex-champagne hover:text-rolex-gold transition-colors duration-200">
                 Rajasthan Tours
               </Link>
-              <Link to="/tours/goa-beaches" className="text-rolex-champagne hover:text-rolex-gold transition-colors duration-200">
+              <Link to="/citytour/686ad911e304211edeb3dda8" className="text-rolex-champagne hover:text-rolex-gold transition-colors duration-200">
                 Goa Beaches
               </Link>
               <Link to="/citytour/686ac92de304211edeb3dd87" className="text-rolex-champagne hover:text-rolex-gold transition-colors duration-200">
@@ -129,7 +129,7 @@ const Footer = () => {
             <Link to="/terms" className="text-rolex-champagne hover:text-rolex-gold text-sm transition-colors duration-200">
               Terms of Service
             </Link>
-           
+
           </div>
         </div>
       </div>
