@@ -23,7 +23,7 @@ const EditTour = () => {
   useEffect(() => {
     const fetchTour = async () => {
       try {
-        const res = await axios.get(`https://sandctour.duckdns.org/api/v1/tour/${id}`);
+        const res = await axios.get(`https://sandctour.duckdns.org/api/v1/tour/updatetour/${id}`);
         setTour({
           title: res.data.tour.title,
           duration: res.data.tour.duration,
