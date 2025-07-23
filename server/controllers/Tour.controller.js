@@ -2,7 +2,7 @@ import Tour from "../models/tourSchema.models.js";
 import CityTour from "../models/CitytourSchema.models.js";
 import fs from "fs";
 import mongoose from "mongoose";
-import { uploadMedia } from "../utils/cloudinary.js";
+import { deleteMediaFromCloudinary, uploadMedia } from "../utils/cloudinary.js";
 
 
 export const createTour = async (req, res) => {
