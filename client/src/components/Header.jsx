@@ -21,7 +21,7 @@ const Header = () => {
     { name: 'About', path: '/about' },
     { name: 'Contact', path: '/contact' },
   ];
-
+text-rolex-gold
   return (
     <header className={`sticky top-0 z-50 shadow-lg border-b border-rolex-gold/30 transition-all duration-300 ${scrolled ? 'backdrop-blur-xl "bg-rolex-darkGreen' : 'bg-rolex-darkGreen'}`}>
       {/* Top Bar */}
@@ -30,8 +30,8 @@ const Header = () => {
           <div className="flex items-center space-x-6">
             <div className="flex items-center space-x-2">
               <Phone className="w-4 h-4 text-rolex-gold" />
-              <Link to="tel:+918527921295" className="hover:underline text-rolex-champagne">+91 8527921295</Link>
-              <Link to="tel:+919818808842" className="hover:underline text-rolex-champagne">+91 9818808842</Link>
+              <Link to="tel:+918527921295" className="hover:underline text-rolex-gold">+91 8527921295</Link>
+              <Link to="tel:+919818808842" className="hover:underline text-rolex-gold">+91 9818808842</Link>
             </div>
           </div>
           <div className="flex items-center space-x-2">
