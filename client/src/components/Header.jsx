@@ -21,7 +21,7 @@ const Header = () => {
     { name: 'About', path: '/about' },
     { name: 'Contact', path: '/contact' },
   ];
-text-rolex-gold
+
   return (
     <header className={`sticky top-0 z-50 shadow-lg border-b border-rolex-gold/30 transition-all duration-300 ${scrolled ? 'backdrop-blur-xl "bg-rolex-darkGreen' : 'bg-rolex-darkGreen'}`}>
       {/* Top Bar */}
