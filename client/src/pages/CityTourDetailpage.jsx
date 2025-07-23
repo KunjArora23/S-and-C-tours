@@ -13,7 +13,7 @@ const CityTourDetailPage = () => {
   useEffect(() => {
     const fetchCityDetails = async () => {
       try {
-        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/city/gettours/${id}`);
+        const res = await axios.get(`https://sandctour.duckdns.org/api/v1/city/gettours/${id}`);
         setCity(res.data.city);
       } catch (error) {
         console.error("Failed to fetch city details:", error);

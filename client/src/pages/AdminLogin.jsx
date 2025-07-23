@@ -23,7 +23,7 @@ const AdminLogin = () => {
     }
 
     try {
-      const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/admin/login`, { email, password }, { withCredentials: true });
+      const res = await axios.post('https://sandctour.duckdns.org/api/v1/admin/login', { email, password }, { withCredentials: true });
       toast.success('Login successful');
       navigate('/admin/dashboard'); // Redirect to admin dashboard
     } catch (error) {

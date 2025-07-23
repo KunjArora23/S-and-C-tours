@@ -39,7 +39,7 @@ const CityTours = () => {
 
   const fetchTours = async () => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/admin/get-tours/city/${cityId}`, {
+      const res = await axios.get(`https://sandctour.duckdns.org/api/v1/admin/get-tours/city/${cityId}`, {
         withCredentials: true,
       });
       // Sort tours by order field
@@ -56,7 +56,7 @@ const CityTours = () => {
   const handleDelete = async (tourId) => {
     if (!window.confirm("Are you sure you want to delete this tour?")) return;
     try {
-      await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/v1/admin/delete-tour/${tourId}`, {
+      await axios.delete(`https://sandctour.duckdns.org/api/v1/admin/delete-tour/${tourId}`, {
         withCredentials: true,
       });
       setTours((prev) => prev.filter((t) => t._id !== tourId));
@@ -101,7 +101,7 @@ const CityTours = () => {
         order: index
       }));
 
-      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/tour/admin/reorder`, {
+      await axios.post('https://sandctour.duckdns.org/api/v1/tour/admin/reorder', {
         tourOrders
       });
 

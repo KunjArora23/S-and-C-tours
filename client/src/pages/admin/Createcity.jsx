@@ -36,7 +36,7 @@ export default function CreateCity() {
 
     try {
       const res = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/v1/admin/createcity`, 
+        'https://sandctour.duckdns.org/api/v1/admin/createcity', 
         formData, 
         {
           headers: { 'Content-Type': 'multipart/form-data' },
