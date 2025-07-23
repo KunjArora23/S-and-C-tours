@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import AdminPinModal from '../../components/AdminPinModal';
 
 const EditTour = () => {
   const { id } = useParams();
@@ -15,10 +14,6 @@ const EditTour = () => {
   });
   const [image, setImage] = useState(null);
   const [newDay, setNewDay] = useState({ day: "", title: "", description: "" });
-  const [isPinModalOpen, setIsPinModalOpen] = useState(false);
-  const [pendingAction, setPendingAction] = useState(null); // 'update' or 'delete'
-  const [adminPin, setAdminPin] = useState('');
-  const [pinError, setPinError] = useState('');
 
   useEffect(() => {
     const fetchTour = async () => {
@@ -34,7 +29,6 @@ const EditTour = () => {
         console.error("Error fetching tour:", error);
       }
     };
-
     fetchTour();
   }, [id]);
 
@@ -67,7 +61,6 @@ const EditTour = () => {
     form.append("destinations", JSON.stringify(tour.destinations));
     form.append("itinerary", JSON.stringify(tour.itinerary));
     if (image) form.append("image", image);
-
     try {
       await axios.put(`https://sandctour.duckdns.org/api/v1/admin/updatetour/${id}`, form, {
         headers: { "Content-Type": "multipart/form-data" },
@@ -81,35 +74,17 @@ const EditTour = () => {
     }
   };
 
-  const handleUpdate = async (data) => {
-    setPendingAction('update');
-    setIsPinModalOpen(true);
-  };
   const handleDelete = async () => {
-    setPendingAction('delete');
-    setIsPinModalOpen(true);
-  };
-  const submitWithPin = async (pin) => {
-    setIsPinModalOpen(false);
+    if (!window.confirm("Are you sure you want to delete this tour?")) return;
     try {
-      if (pendingAction === 'update') {
-        await axios.put(`https://sandctour.duckdns.org/api/v1/admin/updatetour/${id}`, { ...form, pin }, {
-          headers: { "Content-Type": "multipart/form-data" },
-          withCredentials: true,
-        });
-      } else if (pendingAction === 'delete') {
-        await axios.delete(`https://sandctour.duckdns.org/api/v1/admin/updatetour/${id}`, { data: { pin } });
-      }
-      // handle success (refresh, close modal, etc.)
-      alert("Tour updated successfully");
-      navigate(`/admin/city/${tour.city}/tours`);
-    } catch (err) {
-      if (err.response && err.response.status === 403) {
-        setPinError('Invalid PIN. Please try again.');
-      } else {
-        // handle other errors
-        alert("Failed to update tour");
-      }
+      await axios.delete(`https://sandctour.duckdns.org/api/v1/admin/delete-tour/${id}`, {
+        withCredentials: true,
+      });
+      alert("Tour deleted successfully");
+      navigate(-1);
+    } catch (error) {
+      console.error("Delete failed", error);
+      alert("Failed to delete tour");
     }
   };
 
@@ -135,7 +110,6 @@ const EditTour = () => {
           className="w-full border px-4 py-2 rounded"
           required
         />
-
         {/* Destinations */}
         <div className="space-y-2">
           <label className="font-semibold">Destinations:</label>
@@ -155,7 +129,6 @@ const EditTour = () => {
             + Add Destination
           </button>
         </div>
-
         {/* Itinerary */}
         <div>
           <label className="font-semibold">Itinerary:</label>
@@ -181,7 +154,6 @@ const EditTour = () => {
               />
             </div>
           ))}
-
           {/* Add new itinerary day */}
           <div className="grid grid-cols-3 gap-2 mt-2">
             <input
@@ -211,14 +183,12 @@ const EditTour = () => {
             + Add Itinerary Day
           </button>
         </div>
-
         {/* Image */}
         <input
           type="file"
           accept="image/*"
           onChange={(e) => setImage(e.target.files[0])}
         />
-
         <button
           type="submit"
           className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700"
@@ -226,8 +196,12 @@ const EditTour = () => {
           Update Tour
         </button>
       </form>
-      <AdminPinModal isOpen={isPinModalOpen} onClose={() => setIsPinModalOpen(false)} onSubmit={submitWithPin} />
-      {pinError && <div className="text-red-500">{pinError}</div>}
+      <button
+        onClick={handleDelete}
+        className="mt-4 bg-red-600 text-white px-6 py-2 rounded hover:bg-red-700"
+      >
+        Delete Tour
+      </button>
     </div>
   );
 };
