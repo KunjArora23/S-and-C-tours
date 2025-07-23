@@ -35,6 +35,7 @@ const EditTour = () => {
 
   const handleChange = (e) => {
     setTour({ ...tour, [e.target.name]: e.target.value });
+    console.log(tour)
   };
 
   const handleDestinationChange = (index, value) => {
