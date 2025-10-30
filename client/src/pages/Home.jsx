@@ -7,7 +7,7 @@ import TourCard from '../components/TourCard';
 // import EnquiryForm from '../components/EnquiryForm';
 import ReviewSlideshow from '../components/ReviewSlideshow';
 import { motion } from 'framer-motion';
-const MotionLink = motion(Link);
+// const MotionLink = motion(Link);
 
 const Home = () => {
   const [featuredTours, setFeaturedTours] = useState([]);
@@ -23,9 +23,10 @@ const Home = () => {
   useEffect(() => {
     const loadFeaturedTours = async () => {
       try {
-        // Use the new featured tours endpoint that respects order
-        const response = await axios.get('https://sandctour.duckdns.org/api/v1/tour/featured');
+  // Use the new featured tours endpoint that respects order
+  const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/tour/featured`);
         const tours = response.data.tours || [];
+        console.log(tours)
         setFeaturedTours(tours);
       } catch (error) {
         console.warn('Using fallback featured tours');

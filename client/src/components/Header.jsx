@@ -48,7 +48,7 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 group">
             <div className="w-12 h-12  rounded-xl flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
-              <img src="/logo.png" alt="" srcset="" />
+              <img src="/logo.png" alt="" srcSet="" />
             </div>
             <div>
               <h1 className={`text-2xl md:text-3xl font-cinzel font-bold tracking-tight drop-shadow-xl group-hover:text-rolex-green transition-colors ${scrolled ? 'text-white drop-shadow-lg' : 'text-rolex-gold'}`}>S & C Tours</h1>

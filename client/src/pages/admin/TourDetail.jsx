@@ -10,7 +10,7 @@ const TourDetail = () => {
   useEffect(() => {
     const fetchTour = async () => {
       try {
-        const res = await axios.get(`https://sandctour.duckdns.org/api/v1/tour/${id}`);
+  const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/tour/${id}`);
         setTour(res.data.tour || null);
       } catch (err) {
         console.error("Error fetching tour:", err);

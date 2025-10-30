@@ -3,6 +3,8 @@ import mongoose from 'mongoose';
 const connectDB = async () => {
   try {
     const mongoURI = 'mongodb+srv://kunjarora23:Kunj123@tourtravels.hfadxbn.mongodb.net/TourTravels';
+    // const mongoURI = 'mongodb+srv://kunjarora23:Kunj123@tourtravels.hfadxbn.mongodb.net/';
+    
 
     const conn = await mongoose.connect(mongoURI);
     console.log(`✅ MongoDB Connected: ${conn.connection.host}`);

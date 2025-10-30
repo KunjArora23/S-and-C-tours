@@ -18,7 +18,7 @@ const EditTour = () => {
   useEffect(() => {
     const fetchTour = async () => {
       try {
-        const res = await axios.get(`https://sandctour.duckdns.org/api/v1/tour/${id}`);
+  const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/tour/${id}`);
         setTour({
           title: res.data.tour.title || "",
           duration: res.data.tour.duration || "",
@@ -72,7 +72,7 @@ const EditTour = () => {
     form.append("itinerary", JSON.stringify(tour.itinerary));
     if (image) form.append("image", image);
     try {
-      await axios.put(`https://sandctour.duckdns.org/api/v1/admin/updatetour/${id}`, form, {
+  await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/v1/admin/updatetour/${id}`, form, {
         headers: { "Content-Type": "multipart/form-data" },
         withCredentials: true,
       });
@@ -87,7 +87,7 @@ const EditTour = () => {
   const handleDelete = async () => {
     if (!window.confirm("Are you sure you want to delete this tour?")) return;
     try {
-      await axios.delete(`https://sandctour.duckdns.org/api/v1/admin/delete-tour/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/v1/admin/delete-tour/${id}`, {
         withCredentials: true,
       });
       alert("Tour deleted successfully");
