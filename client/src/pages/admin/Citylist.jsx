@@ -119,7 +119,7 @@ const CityList = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="flex justify-between items-center mb-8">
+      <div className="flex justify-between items-center mb-8 gap-3 flex-col sm:flex-row">
         <div>
           <h2 className="text-2xl font-bold text-gray-800 dark:text-white">Cities Management</h2>
           <p className="text-gray-600 dark:text-gray-400 mt-1">
@@ -128,7 +128,7 @@ const CityList = () => {
         </div>
         <button
           onClick={() => navigate('/admin/createcity')}
-          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors duration-200"
+          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors duration-200 w-full sm:w-auto"
         >
           Add New City
         </button>
@@ -215,24 +215,24 @@ const SortableCityCard = ({ city, index, totalCities, onDelete, reordering, onNa
         isDragging ? 'shadow-2xl scale-105' : ''
       }`}
     >
-      <div className="flex">
+      <div className="flex flex-col sm:flex-row">
         {/* Drag Handle */}
         <div 
           {...attributes}
           {...listeners}
-          className="w-16 bg-gray-50 dark:bg-gray-700 p-4 flex flex-col items-center justify-center cursor-grab active:cursor-grabbing"
+          className="w-full sm:w-16 h-10 sm:h-auto bg-gray-50 dark:bg-gray-700 p-2 sm:p-4 flex flex-row sm:flex-col items-center justify-center cursor-grab active:cursor-grabbing gap-1"
         >
           <GripVertical className="w-5 h-5 text-gray-400" />
-          <span className="text-xs text-gray-500 mt-1">
+          <span className="text-xs text-gray-500 sm:mt-1">
             {index + 1} of {totalCities}
           </span>
         </div>
 
         {/* City Content */}
         <div className="flex-1">
-          <div className="flex">
+          <div className="flex flex-col sm:flex-row">
             {/* City Image */}
-            <div className="w-48 h-32 overflow-hidden">
+            <div className="w-full sm:w-48 h-40 sm:h-32 overflow-hidden">
               <img
                 src={city.image}
                 alt={city.title}
@@ -245,11 +245,11 @@ const SortableCityCard = ({ city, index, totalCities, onDelete, reordering, onNa
 
             {/* City Info */}
             <div className="flex-1 p-4">
-              <div className="flex justify-between items-start mb-2">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-2">
                 <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
                   {city.title}
                 </h3>
-                <div className="flex space-x-2">
+                <div className="flex gap-2">
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
@@ -274,11 +274,11 @@ const SortableCityCard = ({ city, index, totalCities, onDelete, reordering, onNa
                 {city.description}
               </p>
               
-              <div className="flex justify-between items-center">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
                 <span className="text-xs text-gray-500 dark:text-gray-400">
                   {city.tours?.length || 0} tours available
                 </span>
-                <div className="flex space-x-2">
+                <div className="flex gap-2">
                   <button
                     onClick={() => onNavigate(`/admin/city/${city._id}/tours`)}
                     className="px-3 py-1 bg-blue-600 text-white text-xs font-medium rounded hover:bg-blue-700 transition-colors"

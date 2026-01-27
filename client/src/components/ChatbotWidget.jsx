@@ -72,11 +72,21 @@ const ChatbotWidget = () => {
             border-radius: 50% !important;
             background: rgba(34, 34, 34, 0.7) !important;
             box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            display: grid !important;
+            place-items: center !important;
+            position: relative !important;
           }
           .chatbot-img {
             width: 44px !important;
             height: 44px !important;
             box-shadow: none !important;
+            object-fit: contain !important;
+            object-position: center !important;
+            display: block !important;
+            position: absolute !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
           }
         }
         @media (max-width: 640px) {

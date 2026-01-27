@@ -99,7 +99,7 @@ const EditTour = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white rounded shadow mt-10">
+    <div className="max-w-3xl mx-auto p-6 sm:p-8 bg-white rounded shadow mt-6 sm:mt-10">
       <h2 className="text-2xl font-bold mb-4">Edit Tour</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
@@ -143,7 +143,7 @@ const EditTour = () => {
         <div>
           <label className="font-semibold">Itinerary:</label>
           {tour.itinerary.map((item, index) => (
-            <div key={index} className="grid grid-cols-3 gap-2 mb-2">
+            <div key={index} className="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-2">
               <input
                 value={item.day}
                 onChange={(e) => handleItineraryChange(index, "day", e.target.value)}
@@ -165,7 +165,7 @@ const EditTour = () => {
             </div>
           ))}
           {/* Add new itinerary day */}
-          <div className="grid grid-cols-3 gap-2 mt-2">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-2">
             <input
               value={newDay.day}
               onChange={(e) => setNewDay({ ...newDay, day: e.target.value })}
@@ -194,17 +194,20 @@ const EditTour = () => {
           </button>
         </div>
         {/* Image */}
-        <input
-          type="file"
-          accept="image/*"
-          onChange={(e) => setImage(e.target.files[0])}
-        />
-        <button
-          type="submit"
-          className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700"
-        >
-          Update Tour
-        </button>
+        <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center">
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) => setImage(e.target.files[0])}
+            className="w-full sm:w-auto"
+          />
+          <button
+            type="submit"
+            className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 w-full sm:w-auto"
+          >
+            Update Tour
+          </button>
+        </div>
       </form>
      
     </div>

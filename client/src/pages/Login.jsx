@@ -24,7 +24,7 @@ const Login = () => {
     // In a real app, you would make an API call here
     // For demo purposes, we'll use mock data
     if (isAdmin) {
-      if (email === 'admin@example.com' && password === 'admin123') {
+      if (email === 'admin@admin.com' && password === 'admin123') {
         login({
           email,
           firstName: 'Admin',

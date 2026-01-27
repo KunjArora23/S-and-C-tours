@@ -20,7 +20,7 @@ import {
   useSortable,
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import AdminPinModal from '../../components/AdminPinModal';
+// Admin PIN modal removed
 
 const ReviewManagement = () => {
   const [reviews, setReviews] = useState([]);
@@ -35,11 +35,7 @@ const ReviewManagement = () => {
     image: null
   });
   const [imagePreview, setImagePreview] = useState('');
-  // Add state for modal
-  const [isPinModalOpen, setIsPinModalOpen] = useState(false);
-  const [pendingAction, setPendingAction] = useState(null); // 'update' or 'delete'
-  const [adminPin, setAdminPin] = useState('');
-  const [pinError, setPinError] = useState('');
+  // PIN flow removed
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -93,7 +89,7 @@ const ReviewManagement = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    if (!formData.customerName || !formData.review || !formData.image) {
+    if (!formData.customerName || !formData.review || (!editingReview && !formData.image)) {
       toast.error('Please fill all required fields');
       return;
     }
@@ -103,7 +99,9 @@ const ReviewManagement = () => {
       formDataToSend.append('customerName', formData.customerName);
       formDataToSend.append('rating', formData.rating);
       formDataToSend.append('review', formData.review);
-      formDataToSend.append('image', formData.image);
+      if (formData.image) {
+        formDataToSend.append('image', formData.image);
+      }
 
       if (editingReview) {
           await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/v1/review/${editingReview._id}`, formDataToSend, {
@@ -137,38 +135,15 @@ const ReviewManagement = () => {
     setShowForm(true);
   };
 
-  // Wrap update/delete handlers
-  const handleUpdate = async (data) => {
-    setPendingAction('update');
-    setIsPinModalOpen(true);
-  };
-  const handleDelete = async () => {
-    setPendingAction('delete');
-    setIsPinModalOpen(true);
-  };
-  const submitWithPin = async (pin) => {
-    setIsPinModalOpen(false);
+  const handleDelete = async (reviewId) => {
     try {
-      if (pendingAction === 'update') {
-        await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/v1/review/${editingReview._id}`, { ...formData, pin }, {
-          withCredentials: true
-        });
-        toast.success('Review updated successfully');
-      } else if (pendingAction === 'delete') {
-        await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/v1/review/${editingReview._id}`, {
-          data: { pin },
-          withCredentials: true
-        });
-        toast.success('Review deleted successfully');
-      }
-      resetForm();
+      await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/v1/review/${reviewId}`, {
+        withCredentials: true
+      });
+      toast.success('Review deleted successfully');
       fetchReviews();
     } catch (err) {
-      if (err.response && err.response.status === 403) {
-        setPinError('Invalid PIN. Please try again.');
-      } else {
-        toast.error(err.response?.data?.message || 'Failed to save review');
-      }
+      toast.error(err.response?.data?.message || 'Failed to delete review');
     }
   };
 
@@ -259,7 +234,7 @@ const ReviewManagement = () => {
     <div className="min-h-screen bg-gray-100 px-4 py-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="flex justify-between items-center mb-8">
+        <div className="flex justify-between items-center mb-8 gap-3 flex-col sm:flex-row">
           <div>
             <h1 className="text-3xl font-bold text-gray-800">Review Management</h1>
             <p className="text-gray-600 mt-1">
@@ -268,7 +243,7 @@ const ReviewManagement = () => {
           </div>
           <button
             onClick={() => setShowForm(true)}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg flex items-center space-x-2 transition-colors"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg flex items-center space-x-2 transition-colors w-full sm:w-auto justify-center"
           >
             <Plus className="w-5 h-5" />
             <span>Add Review</span>
@@ -345,7 +320,7 @@ const ReviewManagement = () => {
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Customer Image *
                 </label>
-                <div className="flex items-center space-x-4">
+                <div className="flex items-center gap-4 flex-col sm:flex-row">
                   <input
                     type="file"
                     accept="image/*"
@@ -357,23 +332,23 @@ const ReviewManagement = () => {
                     <img
                       src={imagePreview}
                       alt="Preview"
-                      className="w-16 h-16 object-cover rounded-lg border"
+                      className="w-20 h-20 sm:w-16 sm:h-16 object-cover rounded-lg border"
                     />
                   )}
                 </div>
               </div>
 
-              <div className="flex justify-end space-x-4">
+              <div className="flex flex-col sm:flex-row sm:justify-end gap-3">
                 <button
                   type="button"
                   onClick={resetForm}
-                  className="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
+                  className="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors w-full sm:w-auto"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                  className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors w-full sm:w-auto"
                 >
                   {editingReview ? 'Update Review' : 'Add Review'}
                 </button>
@@ -426,8 +401,7 @@ const ReviewManagement = () => {
           </DndContext>
         )}
       </div>
-      <AdminPinModal isOpen={isPinModalOpen} onClose={() => setIsPinModalOpen(false)} onSubmit={submitWithPin} />
-      {pinError && <div className="text-red-500">{pinError}</div>}
+      {/* PIN modal removed */}
     </div>
   );
 };
@@ -456,24 +430,24 @@ const SortableReviewCard = ({ review, index, totalReviews, onEdit, onDelete, onT
         isDragging ? 'shadow-2xl scale-105' : ''
       }`}
     >
-      <div className="flex">
+      <div className="flex flex-col sm:flex-row">
         {/* Drag Handle */}
         <div 
           {...attributes}
           {...listeners}
-          className="w-16 bg-gray-50 p-4 flex flex-col items-center justify-center cursor-grab active:cursor-grabbing"
+          className="w-full sm:w-16 h-10 sm:h-auto bg-gray-50 p-2 sm:p-4 flex flex-row sm:flex-col items-center justify-center cursor-grab active:cursor-grabbing gap-1"
         >
           <GripVertical className="w-5 h-5 text-gray-400" />
-          <span className="text-xs text-gray-500 mt-1">
+          <span className="text-xs text-gray-500 sm:mt-1">
             {index + 1} of {totalReviews}
           </span>
         </div>
 
         {/* Review Content */}
         <div className="flex-1">
-          <div className="flex">
+          <div className="flex flex-col sm:flex-row">
             {/* Review Image */}
-            <div className="w-32 h-32 overflow-hidden">
+            <div className="w-28 h-28 sm:w-32 sm:h-32 overflow-hidden">
               <img
                 src={review.image}
                 alt={review.customerName}
@@ -486,7 +460,7 @@ const SortableReviewCard = ({ review, index, totalReviews, onEdit, onDelete, onT
 
             {/* Review Info */}
             <div className="flex-1 p-4">
-              <div className="flex justify-between items-start mb-2">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-2">
                 <div>
                   <h3 className="text-lg font-semibold text-gray-800">
                     {review.customerName}
@@ -496,7 +470,7 @@ const SortableReviewCard = ({ review, index, totalReviews, onEdit, onDelete, onT
                     <span className="text-sm text-gray-600">({review.rating}/5)</span>
                   </div>
                 </div>
-                <div className="flex space-x-2">
+                <div className="flex flex-wrap gap-2">
                   <button
                     onClick={() => onToggleStatus(review._id)}
                     className={`p-2 rounded-full ${

@@ -11,7 +11,6 @@ import {
   reorderReviews
 } from '../controllers/review.controller.js';
 import upload from '../utils/multer.js';
-import {pinMiddleware} from '../middleware/pin.middleware.js';
 
 const reviewRouter = express.Router();
 
@@ -22,8 +21,8 @@ reviewRouter.get('/:id', getReviewById);
 // Admin routes (protected)
 reviewRouter.post('/create', upload.single('image'), createReview);
 reviewRouter.get('/', getAllReviews);
-reviewRouter.put('/:id', upload.single('image'), pinMiddleware, updateReview);
-reviewRouter.delete('/:id', pinMiddleware, deleteReview);
+reviewRouter.put('/:id', upload.single('image'), updateReview);
+reviewRouter.delete('/:id', deleteReview);
 reviewRouter.patch('/:id/toggle', toggleReviewStatus);
 reviewRouter.patch('/admin/order', updateReviewOrder);
 reviewRouter.post('/admin/reorder', reorderReviews);

@@ -145,7 +145,7 @@ const FeaturedTours = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <div className="flex items-center justify-between">
+          <div className="flex items-start sm:items-center justify-between gap-3 flex-col sm:flex-row">
             <div>
               <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
                 Featured Tours Management
@@ -156,7 +156,7 @@ const FeaturedTours = () => {
             </div>
             <Link
               to="/admin/dashboard"
-              className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg transition-colors duration-200"
+              className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg transition-colors duration-200 w-full sm:w-auto text-center"
             >
               Back to Dashboard
             </Link>
@@ -294,24 +294,24 @@ const SortableTourCard = ({ tour, onToggleFeatured, updating, reordering, isFeat
         isDragging ? 'shadow-2xl scale-105' : ''
       }`}
     >
-      <div className="flex">
+      <div className="flex flex-col sm:flex-row">
         {/* Drag Handle */}
         <div 
           {...attributes}
           {...listeners}
-          className="w-16 bg-gray-50 dark:bg-gray-700 p-4 flex flex-col items-center justify-center cursor-grab active:cursor-grabbing"
+          className="w-full sm:w-16 h-10 sm:h-auto bg-gray-50 dark:bg-gray-700 p-2 sm:p-4 flex flex-row sm:flex-col items-center justify-center cursor-grab active:cursor-grabbing gap-1"
         >
-          <GripVertical className="w-6 h-6 text-gray-400" />
-          <span className="text-xs text-gray-500 mt-1">
+          <GripVertical className="w-5 h-5 text-gray-400" />
+          <span className="text-xs text-gray-500 sm:mt-1">
             {index + 1} of {totalFeatured}
           </span>
         </div>
 
         {/* Tour Content */}
         <div className="flex-1">
-          <div className="flex">
+          <div className="flex flex-col sm:flex-row">
             {/* Tour Image */}
-            <div className="w-48 h-48 overflow-hidden">
+            <div className="w-full sm:w-48 h-40 sm:h-48 overflow-hidden">
               <img
                 src={tour.image || 'https://images.pexels.com/photos/3881104/pexels-photo-3881104.jpeg?auto=compress&cs=tinysrgb&w=800'}
                 alt={tour.title}
@@ -324,7 +324,7 @@ const SortableTourCard = ({ tour, onToggleFeatured, updating, reordering, isFeat
 
             {/* Tour Info */}
             <div className="flex-1 p-4">
-              <div className="flex justify-between items-start mb-2">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-2">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                   {tour.title}
                 </h3>
@@ -355,7 +355,7 @@ const SortableTourCard = ({ tour, onToggleFeatured, updating, reordering, isFeat
               </p>
               
               {/* Actions */}
-              <div className="flex space-x-2">
+              <div className="flex flex-col sm:flex-row gap-2">
                 <Link
                   to={`/admin/tour/${tour._id}`}
                   className="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-sm py-2 px-3 rounded-lg transition-colors duration-200 flex items-center justify-center"

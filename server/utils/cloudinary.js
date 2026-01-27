@@ -4,9 +4,9 @@ import dotenv from "dotenv";
 dotenv.config({})
 
 cloudinary.config({
-  api_key: "358598486164961",
-  api_secret:"UcIsl0baDOMEdfafhS-1tsKhR2k",
-  cloud_name: "kunjbackend",
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
 })
 
 const uploadMedia = async (file, foldername = "TourTravels") => {

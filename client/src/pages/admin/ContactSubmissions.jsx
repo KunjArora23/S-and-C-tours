@@ -34,25 +34,25 @@ const ContactSubmissions = () => {
   }, [page, emailFilter, dateFilter]);
 
   return (
-    <div className="p-8">
-      <h1 className="text-2xl font-bold mb-6">Contact Form Submissions</h1>
-      <div className="flex gap-4 mb-4">
+    <div className="p-4 sm:p-8">
+      <h1 className="text-2xl font-bold mb-4 sm:mb-6">Contact Form Submissions</h1>
+      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-4">
         <input
           type="email"
           placeholder="Filter by email"
           value={emailFilter}
           onChange={e => { setEmailFilter(e.target.value); setPage(1); }}
-          className="border px-3 py-2 rounded"
+          className="border px-3 py-2 rounded w-full sm:w-auto"
         />
         <input
           type="date"
           value={dateFilter}
           onChange={e => { setDateFilter(e.target.value); setPage(1); }}
-          className="border px-3 py-2 rounded"
+          className="border px-3 py-2 rounded w-full sm:w-auto"
         />
-        <button onClick={fetchSubmissions} className="bg-blue-600 text-white px-4 py-2 rounded">Search</button>
+        <button onClick={fetchSubmissions} className="bg-blue-600 text-white px-4 py-2 rounded w-full sm:w-auto">Search</button>
       </div>
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto -mx-4 sm:mx-0">
         <table className="min-w-full border">
           <thead>
             <tr className="bg-gray-100">
@@ -90,17 +90,17 @@ const ContactSubmissions = () => {
           </tbody>
         </table>
       </div>
-      <div className="flex justify-between items-center mt-4">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mt-4">
         <span>Page {page} of {Math.ceil(total / PAGE_SIZE) || 1}</span>
-        <div className="space-x-2">
-          <button disabled={page === 1} onClick={() => setPage(page - 1)} className="px-3 py-1 border rounded disabled:opacity-50">Prev</button>
-          <button disabled={page * PAGE_SIZE >= total} onClick={() => setPage(page + 1)} className="px-3 py-1 border rounded disabled:opacity-50">Next</button>
+        <div className="flex gap-2">
+          <button disabled={page === 1} onClick={() => setPage(page - 1)} className="px-3 py-1 border rounded disabled:opacity-50 w-full sm:w-auto">Prev</button>
+          <button disabled={page * PAGE_SIZE >= total} onClick={() => setPage(page + 1)} className="px-3 py-1 border rounded disabled:opacity-50 w-full sm:w-auto">Next</button>
         </div>
       </div>
       {/* Detail Modal */}
       {selected && (
         <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg shadow-lg p-8 max-w-lg w-full relative">
+          <div className="bg-white rounded-lg shadow-lg p-6 sm:p-8 max-w-lg w-[92vw] sm:w-full relative">
             <button className="absolute top-2 right-2 text-gray-500" onClick={() => setSelected(null)}>&times;</button>
             <h2 className="text-xl font-bold mb-4">Submission Details</h2>
             <div className="space-y-2">

@@ -107,7 +107,7 @@ export const submitContactForm = async (req, res) => {
       text += `\nSlot Error: ${slotError}\n`;
     }
     await sendMail({
-      to: 'ashivam605@gmail.com',
+      to: process.env.CONTACT_TO_EMAIL,
       subject,
       text,
       html,

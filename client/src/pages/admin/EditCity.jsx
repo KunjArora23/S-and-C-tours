@@ -80,7 +80,7 @@ const EditCity = () => {
     };
 
     return (
-        <div className="max-w-xl mx-auto bg-white p-8 rounded-lg shadow mt-10">
+        <div className="max-w-xl mx-auto bg-white p-6 sm:p-8 rounded-lg shadow mt-6 sm:mt-10">
             <h2 className="text-2xl font-bold mb-6">Edit City</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
                 <input
@@ -98,18 +98,20 @@ const EditCity = () => {
                     required
                     className="w-full border border-gray-300 px-4 py-2 rounded min-h-[180px] resize-y"
                 ></textarea>
-                <input
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => setImage(e.target.files[0])}
-                    className="block"
-                />
-                <button
-                    type="submit"
-                    className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700"
-                >
-                    Update City
-                </button>
+                <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center">
+                    <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => setImage(e.target.files[0])}
+                        className="block w-full sm:w-auto"
+                    />
+                    <button
+                        type="submit"
+                        className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 w-full sm:w-auto"
+                    >
+                        Update City
+                    </button>
+                </div>
             </form>
             <AdminPinModal isOpen={isPinModalOpen} onClose={() => setIsPinModalOpen(false)} onSubmit={submitWithPin} />
             {pinError && <div className="text-red-500">{pinError}</div>}

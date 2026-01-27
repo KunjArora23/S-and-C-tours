@@ -28,6 +28,7 @@ console.log("in app,js")
 
 const app = express();
 const PORT = process.env.PORT || 8080;
+const CORS_ORIGINS = (process.env.CORS_ORIGINS || "https://www.sandctours.com,http://localhost:5173").split(',').map(o => o.trim());
 
 // Connect to database
 connectDB()
@@ -36,7 +37,7 @@ connectDB()
 // Middleware
 app.use(cookieParser());
 app.use(cors({
-  origin: ["https://www.sandctours.com", "http://localhost:5173"],
+  origin: CORS_ORIGINS,
   credentials: true,
 }));
 app.use(express.json({ limit: '10mb' }));

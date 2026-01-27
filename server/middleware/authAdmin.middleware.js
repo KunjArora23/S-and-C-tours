@@ -1,8 +1,11 @@
 // middleware/adminAuth.js
 import jwt from 'jsonwebtoken';
 import Admin from '../models/admin.model.js'; // Adjust the path as necessary
+import dotenv from 'dotenv';
 
-const JWT_SECRET = "mysecretkey";
+dotenv.config();
+
+const JWT_SECRET = process.env.JWT_SECRET;
 
 export const adminAuth = async (req, res, next) => {
   try {

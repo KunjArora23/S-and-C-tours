@@ -2,8 +2,10 @@ import mongoose from 'mongoose';
 
 const connectDB = async () => {
   try {
-    const mongoURI = 'mongodb+srv://kunjarora23:Kunj123@tourtravels.hfadxbn.mongodb.net/TourTravels';
-    // const mongoURI = 'mongodb+srv://kunjarora23:Kunj123@tourtravels.hfadxbn.mongodb.net/';
+    const mongoURI = process.env.MONGODB_URI;
+    if (!mongoURI) {
+      throw new Error('MONGODB_URI is not defined in environment');
+    }
     
 
     const conn = await mongoose.connect(mongoURI);

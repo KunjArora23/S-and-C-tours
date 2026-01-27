@@ -2,10 +2,12 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import Admin from '../models/admin.model.js';
+import dotenv from 'dotenv';
 
+dotenv.config();
 
-const JWT_SECRET = "mysecretkey"
-const NODE_ENV = "production"
+const JWT_SECRET = process.env.JWT_SECRET;
+const NODE_ENV = process.env.NODE_ENV || 'development';
 
 export const adminSignup = async (req, res) => {
     const { email, password } = req.body;
@@ -35,8 +37,8 @@ export const adminSignup = async (req, res) => {
         // 5. Set cookie
         res.cookie("adminToken", token, {
             httpOnly: true,
-            secure: true,           // Required for HTTPS
-            sameSite: "None",       // Required for cross-origin cookies
+            secure: NODE_ENV === 'production',
+            sameSite: NODE_ENV === 'production' ? "None" : "Lax",
             maxAge: 86400000        // 1 day
         });
 
@@ -76,8 +78,8 @@ export const adminLogin = async (req, res) => {
         // ✅ Production-ready secure cookie
         res.cookie("adminToken", token, {
             httpOnly: true,
-            secure: true,          // needed for HTTPS
-            sameSite: "None",      // allow cross-origin cookies
+            secure: NODE_ENV === 'production',
+            sameSite: NODE_ENV === 'production' ? "None" : "Lax",
             maxAge: 24 * 60 * 60 * 1000
         });
 
@@ -93,7 +95,7 @@ export const adminLogout = (req, res) => {
     res.clearCookie("adminToken", {
         httpOnly: true,
         secure: NODE_ENV === "production",
-        sameSite: "strict"
+        sameSite: NODE_ENV === 'production' ? 'None' : 'Lax'
     });
 
     return res.status(200).json({ success: true, message: "Admin logged out successfully" });
