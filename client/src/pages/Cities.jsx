@@ -16,7 +16,7 @@ const Cities = () => {
     const fetchTours = async () => {
       try {
         setLoading(true);
-  const { data } = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/city/getAll`); // Update API endpoint if needed
+        const { data } = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/city/getAll`); // Update API endpoint if needed
         setTours(data.data);
         setLoading(false);
       } catch (error) {
@@ -52,7 +52,7 @@ const Cities = () => {
           {/* View Toggle Buttons (hidden on mobile) */}
           <div className="hidden sm:flex items-center justify-end mb-8 gap-3 w-full max-w-xs ml-auto">
             <span className="font-semibold text-rolex-gold text-base mr-2">Show:</span>
-            
+
             <button
               onClick={() => setView(2)}
               className={`px-3 py-2 rounded-lg border-2 transition-all duration-200 focus:outline-none ${view === 2 ? 'border-rolex-gold bg-rolex-gold/20 shadow-lg' : 'border-rolex-green bg-rolex-champagne hover:bg-rolex-gold/10'}`}
@@ -71,7 +71,7 @@ const Cities = () => {
                   key={tour._id}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: i*0.1, type: 'spring', stiffness: 80 }}
+                  transition={{ duration: 0.6, delay: i * 0.1, type: 'spring', stiffness: 80 }}
                   className={view === 1 ? 'flex items-center justify-center min-h-screen' : ''}
                 >
                   <div className={view === 1 ? 'w-full max-w-4xl' : ''}>

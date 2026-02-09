@@ -80,7 +80,9 @@ export const adminLogin = async (req, res) => {
             httpOnly: true,
             secure: NODE_ENV === 'production',
             sameSite: NODE_ENV === 'production' ? "None" : "Lax",
-            maxAge: 24 * 60 * 60 * 1000
+            maxAge: 24 * 60 * 60 * 1000,
+            path: "/",                         // 🔥 REQUIRED
+            domain: NODE_ENV === 'production' ? "sandctours.duckdns.org" : undefined
         });
 
         return res.status(200).json({ success: true, message: "Admin logged in successfully" });
