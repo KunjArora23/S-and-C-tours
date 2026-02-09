@@ -81,7 +81,7 @@ export const adminLogin = async (req, res) => {
             secure: NODE_ENV === 'production',
             sameSite: NODE_ENV === 'production' ? "None" : "Lax",
             maxAge: 24 * 60 * 60 * 1000,
-            path: "/",                         // 🔥 REQUIRED
+            path: "/",                      
             domain: NODE_ENV === 'production' ? "sandctours.duckdns.org" : undefined
         });
 

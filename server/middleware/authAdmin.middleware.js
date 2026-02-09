@@ -10,6 +10,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 export const adminAuth = async (req, res, next) => {
   try {
     const token = req.cookies.adminToken;
+    console.log(req.cookies)
     console.log("token", token);
     if (!token) {
       return res.status(401).json({

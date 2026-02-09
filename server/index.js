@@ -28,7 +28,7 @@ console.log("in app,js")
 
 const app = express();
 const PORT = process.env.PORT || 8080;
-const CORS_ORIGINS = (process.env.CORS_ORIGINS || "https://www.sandctours.com,http://localhost:5173,https://sandctours.duckdns.org").split(',').map(o => o.trim());
+const CORS_ORIGINS = (process.env.CORS_ORIGINS || "https://www.sandctours.com,http://localhost:5173,https://s-and-c-tours.vercel.app").split(',').map(o => o.trim());
 
 // Connect to database
 connectDB()
