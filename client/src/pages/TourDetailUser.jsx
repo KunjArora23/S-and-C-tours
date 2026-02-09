@@ -4,6 +4,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { motion } from 'framer-motion';
 import BackButton from '../components/BackButton';
+import { optimizeCloudinary, getImageWidthHint } from "../utils/image.js";
 
 const TourDetailUser = () => {
   const { id } = useParams();
@@ -52,9 +53,11 @@ const TourDetailUser = () => {
       {tour.image && (
         <div className="w-full h-[400px]">
           <img
-            src={tour.image}
+            src={optimizeCloudinary(tour.image, { width: getImageWidthHint('detail'), quality: 60 })}
             alt={tour.title}
             className="w-full h-full object-cover border-b-4 border-rolex-gold"
+            loading="lazy"
+            decoding="async"
             onError={(e) => {
               e.target.src = "https://via.placeholder.com/600x400?text=Tour+Image";
             }}

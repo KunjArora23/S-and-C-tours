@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 import BackButton from '../components/BackButton';
+import { optimizeCloudinary, getImageWidthHint } from "../utils/image.js";
 
 const CityTourDetailPage = () => {
   const { id } = useParams();
@@ -48,9 +49,11 @@ const CityTourDetailPage = () => {
       {/* City Hero Image */}
       <motion.section className="h-[400px] w-full" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, type: 'spring', stiffness: 80 }}>
         <img
-          src={city.image}
+          src={optimizeCloudinary(city.image, { width: getImageWidthHint('detail'), quality: 60 })}
           alt={city.title}
           className="w-full h-full object-cover border-b-4 border-rolex-gold"
+          loading="lazy"
+          decoding="async"
         />
       </motion.section>
 
@@ -80,9 +83,11 @@ const CityTourDetailPage = () => {
               >
                 {tour.image && (
                   <img
-                    src={tour.image}
+                    src={optimizeCloudinary(tour.image, { width: getImageWidthHint('card'), quality: 60 })}
                     alt={tour.title}
                     className="w-full h-48 object-cover border-b-2 border-rolex-gold transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
+                    decoding="async"
                     onError={(e) =>
                       (e.target.src = "https://via.placeholder.com/600x400?text=Tour+Image")
                     }

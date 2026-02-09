@@ -47,20 +47,23 @@ function AppContent() {
   const location = useLocation();
   const navigationType = useNavigationType();
 
-  // Initial load
+  // Initial load (shorter in dev to avoid artificial delay)
   useEffect(() => {
     setLoading(true);
-    const timer = setTimeout(() => setLoading(false), 1200);
+    const delay = import.meta.env.DEV ? 150 : 1200;
+    const timer = setTimeout(() => setLoading(false), delay);
     return () => clearTimeout(timer);
   }, []);
 
-  // Route change loader
+  // Route change loader (trim in dev)
   useEffect(() => {
     if (navigationType !== 'POP') {
       setLoading(true);
       setFadeOut(false);
-      const timer = setTimeout(() => setFadeOut(true), 800); // fade out after 800ms
-      const timer2 = setTimeout(() => setLoading(false), 1200);
+      const fadeDelay = import.meta.env.DEV ? 80 : 800;
+      const hideDelay = import.meta.env.DEV ? 150 : 1200;
+      const timer = setTimeout(() => setFadeOut(true), fadeDelay);
+      const timer2 = setTimeout(() => setLoading(false), hideDelay);
       return () => { clearTimeout(timer); clearTimeout(timer2); };
     }
   }, [location, navigationType]);

@@ -21,6 +21,7 @@ import {
   useSortable,
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+import { optimizeCloudinary, getImageWidthHint } from "../../utils/image.js";
 
 const CityTours = () => {
   const { cityId } = useParams();
@@ -229,9 +230,14 @@ const SortableTourCard = ({ tour, index, totalTours, onDelete, reordering, onNav
             {/* Tour Image */}
             <div className="w-full sm:w-48 h-40 sm:h-32 overflow-hidden">
               <img
-                src={tour.image || "https://via.placeholder.com/400x300?text=Tour+Image"}
+                src={optimizeCloudinary(
+                  tour.image || "https://via.placeholder.com/400x300?text=Tour+Image",
+                  { width: getImageWidthHint('card'), quality: 60 }
+                )}
                 alt={tour.title}
                 className="w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
                 onError={(e) => {
                   e.target.src = "https://via.placeholder.com/400x300?text=Tour+Image";
                 }}
